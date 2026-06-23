@@ -7,30 +7,35 @@ const firebaseConfig = {
   appId: "1:740891153734:web:f43b86effbb4d70a618147"
 };
 
-// تحميل Firebase بشكل صحيح (بدون document.write)
-const appScript = document.createElement("script");
-appScript.src = "https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js";
-document.head.appendChild(appScript);
-
-const authScript = document.createElement("script");
-authScript.src = "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js";
-document.head.appendChild(authScript);
-
-authScript.onload = function () {
-
-firebase.initializeApp(firebaseConfig);
-
-window.auth = firebase.auth();
-
-// إنشاء حساب
-window.createAccount = function(email, password){
-return auth.createUserWithEmailAndPassword(email, password);
+// نحمل Firebase بشكل ثابت (بدون async مشاكل)
+const load = (src) => {
+  const s = document.createElement("script");
+  s.src = src;
+  document.head.appendChild(s);
 };
 
-// تسجيل دخول
-window.loginAccount = function(email, password){
-return auth.signInWithEmailAndPassword(email, password);
-};
+load("https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js");
+load("https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js");
 
-console.log("Firebase جاهز ✔");
-};
+window.addEventListener("load", () => {
+
+  setTimeout(() => {
+
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+
+    // مهم: تعريف عالمي
+    window.createAccount = (email, password) => {
+      return auth.createUserWithEmailAndPassword(email, password);
+    };
+
+    window.loginAccount = (email, password) => {
+      return auth.signInWithEmailAndPassword(email, password);
+    };
+
+    console.log("Firebase Ready ✔");
+
+  }, 1000);
+
+});
