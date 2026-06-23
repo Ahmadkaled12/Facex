@@ -46,20 +46,19 @@ cursor:pointer;
 </div>
 
 <script>
-function signup(){
+async function signup(){
 
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
 
-// مهم: اسم الدالة الصحيح من firebase.js
-createAccount(email, password)
-.then(()=>{
+try{
+await createAccount(email, password);
 alert("تم إنشاء الحساب بنجاح ✅");
 window.location.href="login.html";
-})
-.catch(error=>{
+}
+catch(error){
 alert(error.message);
-});
+}
 
 }
 </script>
