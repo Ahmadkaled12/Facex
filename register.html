@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <title>إنشاء حساب</title>
@@ -25,6 +26,7 @@ button{
 background:green;
 color:white;
 border:none;
+cursor:pointer;
 }
 </style>
 
@@ -45,17 +47,20 @@ border:none;
 
 <script>
 function signup(){
-let email=document.getElementById("email").value;
-let password=document.getElementById("password").value;
 
-registerUser(email,password)
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+// مهم: اسم الدالة الصحيح من firebase.js
+createAccount(email, password)
 .then(()=>{
-alert("تم إنشاء الحساب بنجاح");
+alert("تم إنشاء الحساب بنجاح ✅");
 window.location.href="login.html";
 })
-.catch(err=>{
-alert(err.message);
+.catch(error=>{
+alert(error.message);
 });
+
 }
 </script>
 
