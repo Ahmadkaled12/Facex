@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <title>تسجيل الدخول</title>
@@ -8,6 +9,11 @@
 <script type="module" src="js/firebase.js"></script>
 
 <style>
+body{
+font-family:Arial;
+background:#f0f2f5;
+}
+
 .box{
 width:350px;
 margin:80px auto;
@@ -15,16 +21,24 @@ background:white;
 padding:20px;
 border-radius:10px;
 box-shadow:0 0 10px #ccc;
+text-align:center;
 }
+
 input,button{
 width:100%;
 padding:10px;
 margin:8px 0;
+border-radius:6px;
+border:1px solid #ddd;
+font-size:16px;
 }
+
 button{
 background:#1877f2;
 color:white;
 border:none;
+cursor:pointer;
+font-weight:bold;
 }
 </style>
 
@@ -44,18 +58,29 @@ border:none;
 </div>
 
 <script>
-function login(){
-let email=document.getElementById("email").value;
-let password=document.getElementById("password").value;
+async function login(){
 
-loginUser(email,password)
-.then(()=>{
-alert("تم تسجيل الدخول");
-window.location.href="index.html";
-})
-.catch(err=>{
-alert(err.message);
-});
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+if(email === "" || password === ""){
+alert("الرجاء تعبئة البيانات");
+return;
+}
+
+try{
+await loginAccount(email, password);
+
+alert("تم تسجيل الدخول بنجاح ✅");
+
+// الانتقال للصفحة الرئيسية
+window.location.href = "home.html";
+
+}
+catch(error){
+alert(error.message);
+}
+
 }
 </script>
 
