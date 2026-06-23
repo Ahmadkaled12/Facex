@@ -1,7 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
-from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyCVJclfpEp9Jo9879C3RfZKiEdBUibwrx",
   authDomain: "ahmad-662ee.firebaseapp.com",
@@ -11,15 +7,26 @@ const firebaseConfig = {
   appId: "1:740891153734:web:f43b86effbb4d70a618147"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Firebase scripts (CDN)
+document.write(`
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+`);
 
-// 🔥 تسجيل حساب
+window.addEventListener("load", function () {
+
+firebase.initializeApp(firebaseConfig);
+
+window.auth = firebase.auth();
+
+// إنشاء حساب
 window.createAccount = function(email, password){
-  return createUserWithEmailAndPassword(auth, email, password);
+return auth.createUserWithEmailAndPassword(email, password);
 };
 
-// 🔥 تسجيل دخول (مهم)
+// تسجيل دخول
 window.loginAccount = function(email, password){
-  return signInWithEmailAndPassword(auth, email, password);
+return auth.signInWithEmailAndPassword(email, password);
 };
+
+});
