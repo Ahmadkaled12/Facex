@@ -1,9 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } 
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
 from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCVJclfpEp9Jo9879C3RfZKiEdBUibwrxI",
+  apiKey: "AIzaSyCVJclfpEp9Jo9879C3RfZKiEdBUibwrx",
   authDomain: "ahmad-662ee.firebaseapp.com",
   projectId: "ahmad-662ee",
   storageBucket: "ahmad-662ee.firebasestorage.app",
@@ -14,7 +14,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// نجعلها global حتى تعمل داخل HTML
-window.createAccount = async function(email, password){
-  return await createUserWithEmailAndPassword(auth, email, password);
+// 🔥 تسجيل حساب
+window.createAccount = function(email, password){
+  return createUserWithEmailAndPassword(auth, email, password);
+};
+
+// 🔥 تسجيل دخول (مهم)
+window.loginAccount = function(email, password){
+  return signInWithEmailAndPassword(auth, email, password);
 };
