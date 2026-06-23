@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+import { getAuth, createUserWithEmailAndPassword } 
 from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 const firebaseConfig = {
@@ -14,11 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// نخليها مباشرة بدون window (مهم)
-window.createAccount = function(email, password){
-  return createUserWithEmailAndPassword(auth, email, password);
-}
-
-window.loginAccount = function(email, password){
-  return signInWithEmailAndPassword(auth, email, password);
-}
+// نجعلها global حتى تعمل داخل HTML
+window.createAccount = async function(email, password){
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
