@@ -60,6 +60,9 @@ font-weight:bold;
 <script src="js/firebase.js"></script>
 
 <script>
+<script src="js/firebase.js"></script>
+
+<script>
 async function login(){
 
 let email = document.getElementById("email").value;
@@ -72,18 +75,15 @@ return;
 
 try{
 await loginAccount(email, password);
-
-alert("تم تسجيل الدخول بنجاح ✔");
-
-// الانتقال للصفحة الرئيسية
+alert("تم تسجيل الدخول ✔");
 window.location.href = "home.html";
-
 }
 catch(e){
 alert(e.message);
 }
 
 }
+</script>
 </script>
 
 </body>
