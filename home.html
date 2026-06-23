@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
 <title>الرئيسية</title>
@@ -18,7 +17,6 @@ color:white;
 padding:15px;
 text-align:center;
 font-size:20px;
-font-weight:bold;
 }
 
 .box{
@@ -39,14 +37,21 @@ OnlineNet Social
 </div>
 
 <div class="box">
+<h2>مرحباً 👋</h2>
+<p>تم تسجيل الدخول بنجاح</p>
 
-<h2>مرحباً بك 🎉</h2>
-
-<p>تم إنشاء الحساب والدخول بنجاح</p>
-
-<a href="login.html">تسجيل خروج</a>
-
+<button onclick="logout()">تسجيل خروج</button>
 </div>
+
+<script src="js/firebase.js"></script>
+
+<script>
+function logout(){
+firebase.auth().signOut().then(()=>{
+window.location.href="login.html";
+});
+}
+</script>
 
 </body>
 </html>
