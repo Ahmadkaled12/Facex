@@ -9,6 +9,11 @@
 <script type="module" src="js/firebase.js"></script>
 
 <style>
+body{
+font-family:Arial;
+background:#f0f2f5;
+}
+
 .box{
 width:350px;
 margin:80px auto;
@@ -16,17 +21,28 @@ background:white;
 padding:20px;
 border-radius:10px;
 box-shadow:0 0 10px #ccc;
+text-align:center;
 }
+
 input,button{
 width:100%;
 padding:10px;
 margin:8px 0;
+border-radius:6px;
+border:1px solid #ddd;
+font-size:16px;
 }
+
 button{
 background:green;
 color:white;
 border:none;
 cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+opacity:0.9;
 }
 </style>
 
@@ -36,7 +52,7 @@ cursor:pointer;
 
 <div class="box">
 
-<h2>إنشاء حساب</h2>
+<h2>إنشاء حساب جديد</h2>
 
 <input type="email" id="email" placeholder="الإيميل">
 <input type="password" id="password" placeholder="كلمة المرور">
@@ -51,10 +67,19 @@ async function signup(){
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
 
+if(email === "" || password === ""){
+alert("الرجاء تعبئة البيانات");
+return;
+}
+
 try{
 await createAccount(email, password);
+
 alert("تم إنشاء الحساب بنجاح ✅");
-window.location.href="login.html";
+
+// 🔥 مهم: الانتقال للصفحة الرئيسية وليس login
+window.location.href = "home.html";
+
 }
 catch(error){
 alert(error.message);
