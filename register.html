@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>إنشاء حساب</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+.register-box{
+width:350px;
+margin:50px auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+.register-box h2{
+text-align:center;
+}
+
+.register-box input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.register-box button{
+width:100%;
+padding:12px;
+background:#42b72a;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+}
+
+</style>
+
 </head>
 
 <body>
 
+<div class="register-box">
+
 <h2>إنشاء حساب جديد</h2>
 
-<input type="text" placeholder="الاسم">
-
-<br><br>
+<input type="text" placeholder="الاسم الكامل">
 
 <input type="email" placeholder="البريد الإلكتروني">
 
-<br><br>
-
 <input type="password" placeholder="كلمة المرور">
 
-<br><br>
+<input type="password" placeholder="تأكيد كلمة المرور">
 
-<button>إنشاء حساب</button>
+<button>إنشاء الحساب</button>
+
+</div>
 
 </body>
 </html>
