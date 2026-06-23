@@ -57,28 +57,30 @@ font-weight:bold;
 
 </div>
 
+<script src="js/firebase.js"></script>
+
 <script>
 async function login(){
 
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
 
-if(email === "" || password === ""){
-alert("الرجاء تعبئة البيانات");
+if(!email || !password){
+alert("املأ البيانات");
 return;
 }
 
 try{
 await loginAccount(email, password);
 
-alert("تم تسجيل الدخول بنجاح ✅");
+alert("تم تسجيل الدخول بنجاح ✔");
 
 // الانتقال للصفحة الرئيسية
 window.location.href = "home.html";
 
 }
-catch(error){
-alert(error.message);
+catch(e){
+alert(e.message);
 }
 
 }
