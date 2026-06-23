@@ -1,68 +1,63 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>إنشاء حساب</title>
 
 <link rel="stylesheet" href="css/style.css">
+<script type="module" src="js/firebase.js"></script>
 
 <style>
-
-.register-box{
+.box{
 width:350px;
-margin:50px auto;
+margin:80px auto;
 background:white;
-padding:25px;
+padding:20px;
 border-radius:10px;
-box-shadow:0 0 15px rgba(0,0,0,.1);
+box-shadow:0 0 10px #ccc;
 }
-
-.register-box h2{
-text-align:center;
-}
-
-.register-box input{
+input,button{
 width:100%;
-padding:12px;
+padding:10px;
 margin:8px 0;
-border:1px solid #ddd;
-border-radius:6px;
 }
-
-.register-box button{
-width:100%;
-padding:12px;
-background:#42b72a;
+button{
+background:green;
 color:white;
 border:none;
-border-radius:6px;
-font-size:16px;
 }
-
 </style>
 
 </head>
 
 <body>
 
-<div class="register-box">
+<div class="box">
 
-<h2>إنشاء حساب جديد</h2>
+<h2>إنشاء حساب</h2>
 
-<input type="text" placeholder="الاسم الكامل">
+<input type="email" id="email" placeholder="الإيميل">
+<input type="password" id="password" placeholder="كلمة المرور">
 
-<input type="email" placeholder="البريد الإلكتروني">
-
-<input type="password" placeholder="كلمة المرور">
-
-<input type="password" placeholder="تأكيد كلمة المرور">
-
-<button>إنشاء الحساب</button>
+<button onclick="signup()">إنشاء الحساب</button>
 
 </div>
+
+<script>
+function signup(){
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+
+registerUser(email,password)
+.then(()=>{
+alert("تم إنشاء الحساب بنجاح");
+window.location.href="login.html";
+})
+.catch(err=>{
+alert(err.message);
+});
+}
+</script>
 
 </body>
 </html>
