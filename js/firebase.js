@@ -7,13 +7,16 @@ const firebaseConfig = {
   appId: "1:740891153734:web:f43b86effbb4d70a618147"
 };
 
-// Firebase scripts (CDN)
-document.write(`
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
-`);
+// تحميل Firebase بشكل صحيح (بدون document.write)
+const appScript = document.createElement("script");
+appScript.src = "https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js";
+document.head.appendChild(appScript);
 
-window.addEventListener("load", function () {
+const authScript = document.createElement("script");
+authScript.src = "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js";
+document.head.appendChild(authScript);
+
+authScript.onload = function () {
 
 firebase.initializeApp(firebaseConfig);
 
@@ -29,4 +32,5 @@ window.loginAccount = function(email, password){
 return auth.signInWithEmailAndPassword(email, password);
 };
 
-});
+console.log("Firebase جاهز ✔");
+};
