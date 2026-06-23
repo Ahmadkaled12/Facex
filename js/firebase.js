@@ -8,18 +8,17 @@ const firebaseConfig = {
   projectId: "ahmad-662ee",
   storageBucket: "ahmad-662ee.firebasestorage.app",
   messagingSenderId: "740891153734",
-  appId: "1:740891153734:web:f43b86effbb4b982618147"
+  appId: "1:740891153734:web:f43b86effbb4d70a618147"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// إنشاء حساب
-window.registerUser = function(email, password) {
+// نخليها مباشرة بدون window (مهم)
+window.createAccount = function(email, password){
   return createUserWithEmailAndPassword(auth, email, password);
 }
 
-// تسجيل دخول
-window.loginUser = function(email, password) {
+window.loginAccount = function(email, password){
   return signInWithEmailAndPassword(auth, email, password);
 }
